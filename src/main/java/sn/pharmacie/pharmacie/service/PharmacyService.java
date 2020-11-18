@@ -13,33 +13,34 @@ import sn.pharmacie.pharmacie.entities.Pharmacie;
 import sn.pharmacie.pharmacie.repository.PharmacieRepository;
 
 @RestController
+@RequestMapping("/pharmacie")
 public class PharmacyService {
 	@Autowired
 	private PharmacieRepository pharmacieRepo;
 	
-	@RequestMapping(value = "pharmacies/pharmacie" , method = RequestMethod.GET)
-	public  List <Pharmacie> getAll()  {
+	@RequestMapping(value = "/pharmacie" , method = RequestMethod.GET)
+	public  List<Pharmacie> getAll()  {
 		return pharmacieRepo.findAll();	
 	}
 	
-	@RequestMapping(value = "/pharmacie/pharmacie/{ville}" ,method = RequestMethod.GET)
-	public  List <Pharmacie> getAllPharmacieByVille(@PathVariable String ville){
+	@RequestMapping(value = "pharmacie/pharmacieville" ,method = RequestMethod.GET)
+	public  List <Pharmacie> getAllPharmacieByVille(@RequestParam String ville){
 		return pharmacieRepo.getAllPharmacieByVille(ville);	
 
 	}
-	@RequestMapping(value = "/pharmacie/pharmacie/{quartier}" ,method = RequestMethod.GET)
+	@RequestMapping(value = "pharmacies/{quartier}" ,method = RequestMethod.GET)
 	public  List <Pharmacie> getAllPharmacieByQuartier(@PathVariable String quartier)
 	{
 		return pharmacieRepo. getAllPharmacieByQuartier(quartier);	
 
 	}
-	@RequestMapping(value = "/pharmacie/pharmacie/save" ,method = RequestMethod.POST)
+	@RequestMapping(value = "pharmacies/save" ,method = RequestMethod.POST)
 	public  List <Pharmacie>save (Pharmacie pharmacie){
 		pharmacieRepo.save(pharmacie);
 		return pharmacieRepo.findAll();
 
 	}
-	@RequestMapping(value = "/pharmacie/pharmacie/delete/{id}" ,method = RequestMethod.DELETE)
+	@RequestMapping(value = "/pharmacies/delete/{id}" ,method = RequestMethod.DELETE)
 	public  List <Pharmacie>delete (@PathVariable int id)
 	{
 		if(pharmacieRepo.getById(id) != null) {
@@ -49,13 +50,13 @@ public class PharmacyService {
 		return pharmacieRepo.findAll();	
 
 	}
-	@RequestMapping(value = "/pharmacie/pharmacie/get" ,method = RequestMethod.GET)
+	@RequestMapping(value = "pharmacies/get" ,method = RequestMethod.GET)
 	public  Pharmacie get (@RequestParam int id)
 	{
 		return pharmacieRepo.getById(id);	
 
 	}
-	@RequestMapping(value = "/pharmacie/pharmacie/update/{id}" ,method = RequestMethod.PUT )
+	@RequestMapping(value = "pharmacies/update/{id}" ,method = RequestMethod.PUT )
 	public  List <Pharmacie> update (@PathVariable int id, Pharmacie pharmacie)
 	{
 		pharmacie.setId(id);

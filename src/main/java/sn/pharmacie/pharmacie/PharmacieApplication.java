@@ -35,7 +35,8 @@ private PharmacieRepository pharmacieRepo;
 	Pharmacie pharmacie = new Pharmacie();
 	pharmacie.setNom("GUIGUON");
 	pharmacie.setVille("DAKAR");
-	pharmacie.setQuartier("PLATEAU");
+	pharmacie.setQuartier("	Malika");
+	pharmacie.setEtat(2);
 	
 	
 	pharmacieRepo.save(pharmacie);
